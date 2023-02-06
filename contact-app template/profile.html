@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <title>My Contact</title>
+
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Varela+Round">
+  <!-- Bootstrap -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <link href="assets/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/css/jasny-bootstrap.min.css" rel="stylesheet">
+  <link href="assets/css/custom.css" rel="stylesheet">
+</head>
+
+<body>
+  <!-- navbar -->
+  <nav class="navbar navbar-expand-lg navbar-light">
+    <div class="container">
+      <a class="navbar-brand text-uppercase" href="index.html">
+        <strong>Contact</strong> App
+      </a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-toggler"
+        aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <!-- /.navbar-header -->
+      <div class="collapse navbar-collapse" id="navbar-toggler">
+        <ul class="navbar-nav">
+          <li class="nav-item"><a href="#" class="nav-link">Companies</a></li>
+          <li class="nav-item active"><a href="#" class="nav-link">Contacts</a></li>
+        </ul>
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item mr-2"><a href="#" class="btn btn-outline-secondary">Login</a></li>
+          <li class="nav-item"><a href="#" class="btn btn-outline-primary">Register</a></li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
+              data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              John Doe
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+              <a class="dropdown-item" href="profile.html">Settings</a>
+              <a class="dropdown-item" href="#">Logout</a>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- content -->
+  <main class="py-5">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-3">
+          <div class="card">
+            <div class="card-header">
+              Settings
+            </div>
+            <div class="list-group list-group-flush">
+              <a href="profile.html" class="list-group-item list-group-item-action active">Profile</span></a>
+              <a href="password.html" class="list-group-item list-group-item-action">Password</span></a>
+              <a href="#" class="list-group-item list-group-item-action">Import & Export</span></a>
+            </div>
+          </div>
+        </div><!-- /.col-md-3 -->
+
+        <div class="col-md-9">
+          <div class="card">
+            <div class="card-header card-title">
+              <strong>Edit Profile</strong>
+            </div>
+            <div class="card-body">
+              <div class="row">
+                <div class="col-md-8">
+                  <div class="form-group">
+                    <label for="name">Name</label>
+                    <input type="text" name="name" id="name" class="form-control is-invalid">
+                    <div class="invalid-feedback">
+                      Please choose a username.
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" name="email" id="email" class="form-control">
+                  </div>
+                  <div class="form-group">
+                    <label for="phone">Phone</label>
+                    <input type="text" name="phone" id="phone" class="form-control">
+                  </div>
+                  <div class="form-group">
+                    <label for="company">Company</label>
+                    <input type="text" name="company" id="company" class="form-control">
+                  </div>
+                  <div class="form-group">
+                    <label for="country">Country</label>
+                    <input type="text" name="country" id="country" class="form-control">
+                  </div>
+                  <div class="form-group">
+                    <label for="address">Address</label>
+                    <textarea name="address" id="address" rows="2" class="form-control"></textarea>
+                  </div>
+                </div>
+                <div class="offset-md-1 col-md-3">
+                  <div class="form-group">
+                    <label for="bio">Profile picture</label>
+                    <div class="fileinput fileinput-new" data-provides="fileinput">
+                      <div class="fileinput-new img-thumbnail" style="width: 150px; height: 150px;">
+                        <img src="https://via.placeholder.com/150x150" alt="...">
+                      </div>
+                      <div class="fileinput-preview fileinput-exists img-thumbnail"
+                        style="max-width: 150px; max-height: 150px;"></div>
+                      <div class="mt-2">
+                        <span class="btn btn-outline-secondary btn-file"><span class="fileinput-new">Select
+                            image</span><span class="fileinput-exists">Change</span><input type="file"
+                            name="profile_picture"></span>
+                        <a href="#" class="btn btn-outline-secondary fileinput-exists"
+                          data-dismiss="fileinput">Remove</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="card-footer">
+              <div class="row">
+                <div class="col-md-8">
+                  <div class="row">
+                    <div class="col-md-offset-3 col-md-6">
+                      <button type="submit" class="btn btn-success">Update Profile</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script src="assets/js/jquery.min.js"></script>
+  <script src="assets/js/popper.min.js"></script>
+  <script src="assets/js/bootstrap.min.js"></script>
+  <script src="assets/js/jasny-bootstrap.min.js"></script>
+  <script>
+    $("#add-new-group").hide();
+    $('#add-group-btn').click(function () {
+      $("#add-new-group").slideToggle(function () {
+        $('#new_group').focus();
+      });
+      return false;
+    });
+  </script>
+</body>
+
+</html>
