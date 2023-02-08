@@ -13,12 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('companies', function (Blueprint $table) {
-            $table->id(); //unsignedBigInteger() -> UNSIGNED BIG INTEGER PRIMARY KEY AUTO_INCREMENT
+        Schema::create('tasks', function (Blueprint $table) {
+            $table->id();
             $table->string('name');
-            $table->string('addres')->nullable();
-            $table->string('website')->nullable();
-            $table->string('email')->comment('Email of the company');
+            $table->string('description')->nullable();
+            $table->date('due_at')->nullable();
+            $table->boolean('status')->nullable('NULL: Not started, FALSE: In Progress, TRUE: Completed');
             $table->timestamps();
         });
     }
@@ -30,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('companies');
+        Schema::dropIfExists('companys');
     }
 };
