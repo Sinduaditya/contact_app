@@ -33,9 +33,8 @@ use App\Http\Controllers\WelcomeController;
 Route::get('/',WelcomeController::class);
 // define route dengan name membuat route garing kita walaupun salah tujuan link akan tetep tersampaikan
 
-    Route::get('/contacts', [ContactController::class, 'index'])->name('contacts.index');
     Route::get('/contacts/create', [ContactController::class,'create'])->name('contacts.create');
-    Route::get('/contacts/{id}', [ContactController::class,'show'])->name('contacts.show');
+    Route::get('/contacts   /{id}', [ContactController::class,'show'])->name('contacts.show');
 
     // route untuk menggunakan resource
     Route::resource('/companies', CompanyController::class);

@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('companies', function (Blueprint $table) {
             $table->id(); //unsignedBigInteger() -> UNSIGNED BIG INTEGER PRIMARY KEY AUTO_INCREMENT
             $table->string('name');
-            $table->string('addres')->nullable();
+            $table->string('address')->nullable();
             $table->string('website')->nullable();
             $table->string('email')->comment('Email of the company');
             $table->timestamps();

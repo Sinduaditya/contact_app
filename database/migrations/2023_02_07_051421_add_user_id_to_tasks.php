@@ -14,7 +14,8 @@ return new class extends Migration
     public function up()
     {
         Schema::table('tasks', function (Blueprint $table) {
-            $table->integer('user_id')->after('id');
+            // $table->unsignedBigInteger('user_id')->after('id')->nullable();
+            $table->foreignId('user_id')->nullable()->constrained()->cascadeOnDelete()->cascadeOnUpdate();
         });
     }
 
@@ -26,6 +27,7 @@ return new class extends Migration
     public function down()
     {
         Schema::table('tasks', function (Blueprint $table) {
+            $table->dropForeign('tasks_user_id_foreign');
             $table->dropColumn('user_id');
         });
     }
