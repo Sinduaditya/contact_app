@@ -11,7 +11,11 @@ class Contact extends Model
     protected $fillable = ['first_name','last_name','email','phone','address'];
 
     public function company() {
-        
+
         return $this->belongsTo(Company::class);
+    }
+
+    public function tasks(){
+        return $this->hasMany(Task::class);
     }
 }
