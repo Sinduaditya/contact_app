@@ -31,17 +31,11 @@ use App\Http\Controllers\WelcomeController;
 
 
 Route::get('/',WelcomeController::class);
-// define route dengan name membuat route garing kita walaupun salah tujuan link akan tetep tersampaikan
-
+    Route::get('/contacts',[ContactController::class,'index'])->name('contacts.index');
     Route::get('/contacts/create', [ContactController::class,'create'])->name('contacts.create');
-    Route::get('/contacts   /{id}', [ContactController::class,'show'])->name('contacts.show');
+    Route::get('/contacts/{id}', [ContactController::class,'show'])->name('contacts.show');
 
-    // route untuk menggunakan resource
     Route::resource('/companies', CompanyController::class);
-    // Route::resource([
-    //     '/tags' => TagController::class,
-    //     '/tasks' => TaskController::class,
-    // ]);
 
     Route::resource('/companies', CompanyController::class);
 
@@ -49,15 +43,6 @@ Route::get('/',WelcomeController::class);
         '/tags' => TagController::class,
         '/tasks' => TaskController::class
     ]);
-
-    // Route::resource('/activities', ActivityController::class)->except([
-    //     'index', 'show'
-    // ]);
-
-    // Route::resource('/activities', ActivityController::class)->names([
-    //     'index' => 'activities.all',
-    //     'show' => 'activities.view'
-    // ]);
 
     Route::resource('/activities', ActivityController::class)->parameters([
         'activities' => 'active'
