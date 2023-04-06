@@ -8,7 +8,7 @@ use App\Http\Controllers\ContactNoteController;
 use App\Http\Controllers\TagController;
 use App\Http\Controllers\TaskController;
 use App\Http\Controllers\WelcomeController;
-
+use App\Models\Contact;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,28 +30,28 @@ use App\Http\Controllers\WelcomeController;
 // });
 
 
-Route::get('/',WelcomeController::class);
-    Route::get('/contacts',[ContactController::class,'index'])->name('contacts.index');
-    Route::post('/contacts',[ContactController::class,'store'])->name('contacts.store');
+    Route::get('/',WelcomeController::class);
+    // Route::get('/contacts',[ContactController::class,'index'])->name('contacts.index');
+    // Route::post('/contacts',[ContactController::class,'store'])->name('contacts.store');
 
-    Route::get('/contacts/create', [ContactController::class,'create'])->name('contacts.create');
-    Route::get('/contacts/{id}', [ContactController::class,'show'])->name('contacts.show');
+    // Route::get('/contacts/create', [ContactController::class,'create'])->name('contacts.create');
+    // Route::get('/contacts/{id}', [ContactController::class,'show'])->name('contacts.show');
 
-    Route::get('/contacts/{id}/edit', [ContactController::class,'edit'])->name('contacts.edit');
-    Route::put('/contacts/{id}', [ContactController::class,'update'])->name('contacts.update');
+    // Route::get('/contacts/{id}/edit', [ContactController::class,'edit'])->name('contacts.edit');
+    // Route::put('/contacts/{id}', [ContactController::class,'update'])->name('contacts.update');
 
+    // Route::delete('/contacts/{id}', [ContactController::class,'destroy'])->name('contacts.destroy');
+
+    Route::resource('/contacts', ContactController::class);
     Route::resource('/companies', CompanyController::class);
 
-    Route::resource('/companies', CompanyController::class);
 
-    Route::resources    ([
+    Route::resources([
         '/tags' => TagController::class,
         '/tasks' => TaskController::class
     ]);
 
+    Route::resource('/contacts.notes', ContactNoteController::class)->shallow();
     Route::resource('/activities', ActivityController::class)->parameters([
         'activities' => 'active'
     ]);
-
-
-    Route::resource('/contacts.notes', ContactNoteController::class)->shallow();

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Repositories\CompanyRepository;
 use Illuminate\Http\Request;
 use App\Models\Contact;
+use Illuminate\Support\Facades\DB;
 
 class ContactController extends Controller
 {
@@ -15,11 +16,20 @@ class ContactController extends Controller
     public function index(CompanyRepository $company, Request $request)
     {
         $companies = $this->company->pluck();
+        // DB::enableQueryLog();
         $contacts = Contact::latest()->where(function ($query){
             if ($companyId = request()->query("company_id")) {
                 $query->where("company_id", $companyId);
             }
+
+        })->where( function ($query){
+            if($search = request()->query('search')) {
+                $query->where("first_name", "LIKE", "%{$search}%");
+                $query->orWhere("last_name", "LIKE", "%{$search}%");
+                $query->orWhere("email", "LIKE", "%{$search}%");
+            }
         })->paginate(10);
+        // dump(DB::getQueryLog());
         return view('contacts.index', compact('contacts', 'companies'));
     }
 
@@ -75,6 +85,14 @@ class ContactController extends Controller
 
         $contact->update($request->all());
         return redirect()->route('contacts.index')->with('message','Contact has been update successfully');
+    }
+
+    public function destroy($id)
+    {
+
+        $contact = Contact::findOrFail($id);
+        $contact->delete();
+        return redirect()->route('contacts.index')->with('success','Contact has been removed successfully');
     }
 
 }
