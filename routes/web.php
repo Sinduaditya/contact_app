@@ -43,6 +43,9 @@ use App\Models\Contact;
     // Route::delete('/contacts/{id}', [ContactController::class,'destroy'])->name('contacts.destroy');
 
     Route::resource('/contacts', ContactController::class);
+    //soft delete
+    Route::delete('contacts/{contact}/restore', [ContactController::class,'restore'])->name('contacts.restore');
+    Route::delete('contacts/{contact}/force-delete', [ContactController::class,'forceDelete'])->name('contacts.force-delete');
     Route::resource('/companies', CompanyController::class);
 
 
