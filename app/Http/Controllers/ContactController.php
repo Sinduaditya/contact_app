@@ -17,18 +17,12 @@ class ContactController extends Controller
     {
         $companies = $this->company->pluck();
         // DB::enableQueryLog();
-        $query = Contact::query();
-        if(request()->query('trash')){
-            $query->onlyTrashed();
-        }
-        // local scope
-        $contacts = $query->sortByNameAlpha()->filterByCompany()->where( function ($query){
-            if($search = request()->query('search')) {
-                $query->where("first_name", "LIKE", "%{$search}%");
-                $query->orWhere("last_name", "LIKE", "%{$search}%");
-                $query->orWhere("email", "LIKE", "%{$search}%");
-            }
-        })->paginate(10);
+        // local scope rausable
+        $contacts = Contact::allowedTrash()
+        ->allowedSorts('first_name')
+        ->allowedFilters('company_id')
+        ->allowedSearch('first_name','last_name','email')
+        ->paginate(10);
         // dump(DB::getQueryLog());
         return view('contacts.index', compact('contacts', 'companies'));
     }
