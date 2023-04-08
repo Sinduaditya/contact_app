@@ -19,7 +19,7 @@ class ContactController extends Controller
         // DB::enableQueryLog();
         // local scope rausable
         $contacts = Contact::allowedTrash()
-        ->allowedSorts('first_name')
+        ->allowedSorts(['first_name','last_name','email'], "first_name")
         ->allowedFilters('company_id')
         ->allowedSearch('first_name','last_name','email')
         ->paginate(10);
