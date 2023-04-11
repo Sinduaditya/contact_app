@@ -24,7 +24,7 @@ use App\Models\Contact;
 
 
     Route::get('/',WelcomeController::class);
-    Route::middleware(['auth'])->group( function (){
+    Route::middleware(['auth','verified'])->group( function (){
         Route::get('/dashboard',DashboardController::class);
         Route::resource('/contacts', ContactController::class);
         //soft delete
