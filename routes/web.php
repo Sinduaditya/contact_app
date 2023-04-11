@@ -5,6 +5,7 @@ use App\Http\Controllers\CompanyController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\ContactNoteController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\TagController;
 use App\Http\Controllers\TaskController;
 use App\Http\Controllers\WelcomeController;
@@ -23,21 +24,24 @@ use App\Models\Contact;
 
 
     Route::get('/',WelcomeController::class);
-    Route::resource('/contacts', ContactController::class);
-    //soft delete
-    Route::delete('contacts/{contact}/restore', [ContactController::class,'restore'])
-        ->name('contacts.restore')
-        ->withTrashed();
-    Route::delete('contacts/{contact}/force-delete', [ContactController::class,'forceDelete'])
-        ->name('contacts.force-delete')
-        ->withTrashed();
-    Route::resource('/companies', CompanyController::class);
-    Route::resources([
-        '/tags' => TagController::class,
-        '/tasks' => TaskController::class
-    ]);
+    Route::middleware(['auth'])->group( function (){
+        Route::get('/dashboard',DashboardController::class);
+        Route::resource('/contacts', ContactController::class);
+        //soft delete
+        Route::delete('contacts/{contact}/restore', [ContactController::class,'restore'])
+            ->name('contacts.restore')
+            ->withTrashed();
+        Route::delete('contacts/{contact}/force-delete', [ContactController::class,'forceDelete'])
+            ->name('contacts.force-delete')
+            ->withTrashed();
+        Route::resource('/companies', CompanyController::class);
+        Route::resources([
+            '/tags' => TagController::class,
+            '/tasks' => TaskController::class
+        ]);
 
-    Route::resource('/contacts.notes', ContactNoteController::class)->shallow();
-    Route::resource('/activities', ActivityController::class)->parameters([
-        'activities' => 'active'
-    ]);
+        Route::resource('/contacts.notes', ContactNoteController::class)->shallow();
+        Route::resource('/activities', ActivityController::class)->parameters([
+            'activities' => 'active'
+        ]);
+    });

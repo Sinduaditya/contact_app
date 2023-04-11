@@ -1,4 +1,4 @@
-@extends('layouts.public')
+@extends('layouts.main')
 @section('content')
     <!-- content -->
     <div class="py-5 bg-white">
