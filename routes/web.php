@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\ContactNoteController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\Settings\PasswordController;
 use App\Http\Controllers\Settings\ProfileController;
 use App\Http\Controllers\TagController;
 use App\Http\Controllers\TaskController;
@@ -28,6 +29,7 @@ use App\Models\Contact;
     Route::middleware(['auth','verified'])->group( function (){
         Route::get('/dashboard',DashboardController::class);
         Route::get('/settings/profile-information', ProfileController::class)->name('user-profile-information.edit');
+        Route::get('/settings/password', PasswordController::class)->name('user-password.edit');
         Route::resource('/contacts', ContactController::class);
         //soft delete
         Route::delete('contacts/{contact}/restore', [ContactController::class,'restore'])
