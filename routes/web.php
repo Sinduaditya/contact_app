@@ -30,15 +30,25 @@ use App\Models\Contact;
         Route::get('/dashboard',DashboardController::class);
         Route::get('/settings/profile-information', ProfileController::class)->name('user-profile-information.edit');
         Route::get('/settings/password', PasswordController::class)->name('user-password.edit');
+
+        //soft delete contacts
         Route::resource('/contacts', ContactController::class);
-        //soft delete
         Route::delete('contacts/{contact}/restore', [ContactController::class,'restore'])
             ->name('contacts.restore')
             ->withTrashed();
         Route::delete('contacts/{contact}/force-delete', [ContactController::class,'forceDelete'])
             ->name('contacts.force-delete')
             ->withTrashed();
+
+        //soft delete companies
         Route::resource('/companies', CompanyController::class);
+        Route::delete('companies/{company}/restore', [CompanyController::class,'restore'])
+        ->name('companies.restore')
+        ->withTrashed();
+    Route::delete('companies/{company}/force-delete', [CompanyController::class,'forceDelete'])
+        ->name('companies.force-delete')
+        ->withTrashed();
+
         Route::resources([
             '/tags' => TagController::class,
             '/tasks' => TaskController::class
