@@ -12,6 +12,7 @@ use App\Http\Controllers\TagController;
 use App\Http\Controllers\TaskController;
 use App\Http\Controllers\WelcomeController;
 use App\Models\Contact;
+use App\Models\User;
 
 /*
 |--------------------------------------------------------------------------
@@ -58,4 +59,14 @@ use App\Models\Contact;
         Route::resource('/activities', ActivityController::class)->parameters([
             'activities' => 'active'
         ]);
+    });
+
+    //eager loading multiple
+    Route::get('/eagerload-multipe', function () {
+        $users = User::get();
+
+        foreach ($users as $user) {
+            echo $user->name . ": ";
+            echo $user->companies->count() . " companies, " . $user->contacts->count() . " contacts<br>";
+        }
     });
