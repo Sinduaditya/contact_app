@@ -62,11 +62,27 @@ use App\Models\User;
     });
 
     //eager loading multiple
-    Route::get('/eagerload-multipe', function () {
-        $users = User::get();
+    Route::get('/count-models', function () {
+        // $users = User::select(['name', 'email'])->withCount([
+        //     'contacts as contacts_number',
+        //     'companies as companies_count_end_with_gmail' => function ($query) {
+        //         $query->where('email', 'like', '%@gmail.com');
+        //     }
+        // ])->get();
 
+        // foreach ($users as $user) {
+        //     echo $user->name . "<br />";
+        //     echo $user->companies_count_end_with_gmail . " companies<br />";
+        //     echo $user->contacts_number . " contacts<br />";
+        //     echo "<br />";
+        // }
+        $users = User::get();
+        $users->loadCount(['companies' => function ($query) {
+            $query->where('email', 'like', '%@gmail.com');
+        }]);
         foreach ($users as $user) {
-            echo $user->name . ": ";
-            echo $user->companies->count() . " companies, " . $user->contacts->count() . " contacts<br>";
+            echo $user->name . "<br />";
+            echo $user->companies_count . " companies<br />";
+            echo "<br />";
         }
     });

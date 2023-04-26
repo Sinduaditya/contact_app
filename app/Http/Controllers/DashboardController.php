@@ -7,13 +7,15 @@ use Illuminate\Http\Request;
 class DashboardController extends Controller
 {
 
-    public function __construct()
-    {
-        $this->middleware(['auth']);
-    }
+    // public function __construct()
+    // {
+    //     $this->middleware(['auth']);
+    // }
 
-    public function __invoke()
+    public function __invoke(Request $request)
     {
-        return view('dashboard');
+        $user = $request->user()->loadCount(['companies', 'contacts']);
+
+        return view('dashboard', compact('user'));
     }
 }
