@@ -62,7 +62,6 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function profilePictureUrl()
     {
-
         return $this->profile_picture && Storage::exists($this->profile_picture) ?
             Storage::url($this->profile_picture) :
             "https://via.placeholder.com/150x150";
